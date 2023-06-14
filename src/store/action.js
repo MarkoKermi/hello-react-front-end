@@ -1,15 +1,13 @@
-export const getRandomGreeting = () => {
-  return (dispatch) => {
-    fetch('/api/random_greeting')
-      .then((response) => response.json())
-      .then((data) => dispatch(setRandomGreeting(data.greeting)))
-      .catch((error) => console.error(error));
-  };
+export const getRandomGreeting = () => (dispatch) => {
+  fetch('/api/random_greeting')
+    .then((response) => response.json())
+    // eslint-disable-next-line no-use-before-define
+    .then((data) => dispatch(setRandomGreeting(data.greeting)))
+    // eslint-disable-next-line no-console
+    .catch((error) => console.error(error));
 };
 
-export const setRandomGreeting = (greeting) => {
-  return {
-    type: 'SET_RANDOM_GREETING',
-    greeting,
-  };
-};
+export const setRandomGreeting = (greeting) => ({
+  type: 'SET_RANDOM_GREETING',
+  greeting,
+});
